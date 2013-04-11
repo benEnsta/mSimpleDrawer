@@ -3,6 +3,9 @@
 
 #include <QWidget>
 #include <QPainter>
+#include <QLabel>
+#include <QVBoxLayout>
+
 #include <vector>
 #include "math.h"
 
@@ -52,7 +55,7 @@ public:
     void Save(QString s);
     
 private:
-    Ui::IntervalDrawer *ui;
+    QLabel *label;
     QPixmap *pixMap;
     double xMax,xMin,yMax,yMin;
 

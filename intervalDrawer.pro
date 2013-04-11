@@ -15,4 +15,4 @@ SOURCES += main.cpp\
 
 HEADERS  += intervaldrawer.h
 
-FORMS    += intervaldrawer.ui
+FORMS    +=

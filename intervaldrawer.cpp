@@ -1,32 +1,37 @@
 #include "intervaldrawer.h"
-#include "ui_intervaldrawer.h"
 
 IntervalDrawer::IntervalDrawer(double xmin, double xmax,
                                double ymin, double ymax,
                                QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::IntervalDrawer),
     xMax(xmax), xMin(xmin),
     yMax(ymax), yMin(ymin)
 {
-    ui->setupUi(this);
+    label = new QLabel(this);
+    label->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     pixMap = new QPixmap(this->size());
+
+    QVBoxLayout *vbox = new QVBoxLayout(this);
+    vbox->setSpacing(1);
+    setLayout(vbox);
+    vbox->addWidget(label);
     Clean();
 }
 
 IntervalDrawer::~IntervalDrawer()
 {
-    delete ui;
+    delete pixMap;
+    delete label;
 }
 
 void IntervalDrawer::paintEvent(QPaintEvent *)
 {
-    ui->label->setPixmap(*pixMap);
+    label->setPixmap(*pixMap);
 }
 
 void IntervalDrawer::resizeEvent(QResizeEvent *)
 {
-    pixMap = new QPixmap(ui->label->size());
+    pixMap = new QPixmap(label->size());
     Clean();
 }
 
