@@ -1,5 +1,7 @@
 #include "intervaldrawer.h"
 
+#include <QDebug>
+
 IntervalDrawer::IntervalDrawer(double xmin, double xmax,
                                double ymin, double ymax,
                                QWidget *parent) :
@@ -9,12 +11,22 @@ IntervalDrawer::IntervalDrawer(double xmin, double xmax,
 {
     label = new QLabel(this);
     label->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    pixMap = new QPixmap(this->size());
+    label->resize(size());
 
-    QVBoxLayout *vbox = new QVBoxLayout(this);
-    vbox->setSpacing(1);
-    setLayout(vbox);
-    vbox->addWidget(label);
+    pixMap = new QPixmap(this->size());
+    Clean();
+}
+
+IntervalDrawer::IntervalDrawer(QWidget *parent):
+    QWidget(parent),
+    xMax(10), xMin(-10),
+    yMax(10), yMin(-10)
+{
+    label = new QLabel(this);
+    label->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    label->resize(size());
+
+    pixMap = new QPixmap(this->size());
     Clean();
 }
 
@@ -31,7 +43,9 @@ void IntervalDrawer::paintEvent(QPaintEvent *)
 
 void IntervalDrawer::resizeEvent(QResizeEvent *)
 {
-    pixMap = new QPixmap(label->size());
+    label->resize(size());
+    QSize s = label->size();
+    pixMap = new QPixmap(s);
     Clean();
 }
 
@@ -185,4 +199,13 @@ void IntervalDrawer::DrawText(double x, double y,
 void IntervalDrawer::Save(QString s)
 {
     pixMap->save(s+".png","PNG",100);
+}
+
+void IntervalDrawer::setDrawingBow(double xmin, double xmax,
+                                   double ymin, double ymax)
+{
+    xMax=xmax;
+    xMin=xmin;
+    yMax=ymax;
+    yMin=ymin;
 }

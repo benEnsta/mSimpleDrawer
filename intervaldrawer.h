@@ -23,6 +23,7 @@ public:
     explicit IntervalDrawer(double xmin, double xmax,
                             double ymin, double ymax,
                             QWidget *parent = 0);
+    explicit IntervalDrawer(QWidget *parent = 0);
     ~IntervalDrawer();
 
     void Clean();
@@ -53,6 +54,8 @@ public:
     void DrawText(double x, double y,
                   QString s, QColor col);
     void Save(QString s);
+    void setDrawingBow(double xmin, double xmax,
+                       double ymin, double ymax);
     
 private:
     QLabel *label;
