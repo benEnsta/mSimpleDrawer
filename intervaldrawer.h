@@ -11,10 +11,6 @@
 
 using namespace std;
 
-namespace Ui {
-class IntervalDrawer;
-}
-
 class IntervalDrawer : public QWidget
 {
     Q_OBJECT
