@@ -6,7 +6,7 @@
 
 QT       += core gui
 
-TARGET = intervalDrawer
+TARGET = mSimpleDrawer_test
 TEMPLATE = app
 
 

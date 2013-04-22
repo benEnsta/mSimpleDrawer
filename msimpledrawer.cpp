@@ -2,7 +2,7 @@
 
 #include <QDebug>
 
-IntervalDrawer::IntervalDrawer(double xmin, double xmax,
+mSimpleDrawer::mSimpleDrawer(double xmin, double xmax,
                                double ymin, double ymax,
                                QWidget *parent) :
     QWidget(parent),
@@ -17,7 +17,7 @@ IntervalDrawer::IntervalDrawer(double xmin, double xmax,
     Clean();
 }
 
-IntervalDrawer::IntervalDrawer(QWidget *parent):
+mSimpleDrawer::mSimpleDrawer(QWidget *parent):
     QWidget(parent),
     xMax(10), xMin(-10),
     yMax(10), yMin(-10)
@@ -30,18 +30,18 @@ IntervalDrawer::IntervalDrawer(QWidget *parent):
     Clean();
 }
 
-IntervalDrawer::~IntervalDrawer()
+mSimpleDrawer::~mSimpleDrawer()
 {
     delete pixMap;
     delete label;
 }
 
-void IntervalDrawer::paintEvent(QPaintEvent *)
+void mSimpleDrawer::paintEvent(QPaintEvent *)
 {
     label->setPixmap(*pixMap);
 }
 
-void IntervalDrawer::resizeEvent(QResizeEvent *)
+void mSimpleDrawer::resizeEvent(QResizeEvent *)
 {
     label->resize(size());
     QSize s = label->size();
@@ -49,19 +49,19 @@ void IntervalDrawer::resizeEvent(QResizeEvent *)
     Clean();
 }
 
-double IntervalDrawer::xToPix(double x)
+double mSimpleDrawer::xToPix(double x)
 {
     double echx = pixMap->width()/(xMax-xMin);
     return (x-xMin)*echx;
 }
 
-double IntervalDrawer::yToPix(double y)
+double mSimpleDrawer::yToPix(double y)
 {
     double echy = pixMap->height()/(yMax - yMin);
     return pixMap->height() - (y-yMin)*echy;
 }
 
-void IntervalDrawer::Clean()
+void mSimpleDrawer::Clean()
 {
     QPainter p(pixMap) ;
     QRect dim = p.window() ;
@@ -70,7 +70,7 @@ void IntervalDrawer::Clean()
     p.drawRect(dim) ;
 }
 
-void IntervalDrawer::Center(double x, double y)
+void mSimpleDrawer::Center(double x, double y)
 {
     double Rx=(xMax-xMin)/2.0;
     double Ry=(yMax-yMin)/2.0;
@@ -78,7 +78,7 @@ void IntervalDrawer::Center(double x, double y)
     yMin=y-Ry;    yMax=y+Ry;
 }
 
-void IntervalDrawer::DrawArrow(double x, double y,
+void mSimpleDrawer::DrawArrow(double x, double y,
                                double dx, double dy,
                                double r, QPen pen)
 {
@@ -97,7 +97,7 @@ void IntervalDrawer::DrawArrow(double x, double y,
     p.drawLine(xToPix(x2),yToPix(y2),xToPix(qx),yToPix(qy));
 }
 
-void IntervalDrawer::DrawBox(double xmin, double xmax,
+void mSimpleDrawer::DrawBox(double xmin, double xmax,
                              double ymin, double ymax,
                              QPen pen, QBrush brush)
 {
@@ -113,7 +113,7 @@ void IntervalDrawer::DrawBox(double xmin, double xmax,
     p.drawPolygon(box);
 }
 
-void IntervalDrawer::DrawEllipse(double cx, double cy, double r,
+void mSimpleDrawer::DrawEllipse(double cx, double cy, double r,
                                  QPen pen, QBrush brush)
 {
     QPainter p(pixMap);
@@ -123,7 +123,7 @@ void IntervalDrawer::DrawEllipse(double cx, double cy, double r,
                   xToPix(cx+r)-xToPix(cx-r),yToPix(cy-r)-yToPix(cy+r));
 }
 
-void IntervalDrawer::DrawLine(double x1, double y1,
+void mSimpleDrawer::DrawLine(double x1, double y1,
                               double x2, double y2,
                               QPen pen)
 {
@@ -132,7 +132,7 @@ void IntervalDrawer::DrawLine(double x1, double y1,
     p.drawLine(xToPix(x1),yToPix(y1),xToPix(x2),yToPix(y2));
 }
 
-void IntervalDrawer::DrawPolygon(double x, double y,
+void mSimpleDrawer::DrawPolygon(double x, double y,
                                   double theta,
                                   vector<double> X, vector<double> Y,
                                   QPen pen, QBrush brush)
@@ -151,7 +151,7 @@ void IntervalDrawer::DrawPolygon(double x, double y,
     p.drawPolygon(poly);
 }
 
-void IntervalDrawer::DrawRobot(double x, double y, double theta)
+void mSimpleDrawer::DrawRobot(double x, double y, double theta)
 {
     vector<double> X,Y;
     X.push_back(0); Y.push_back(-1);
@@ -160,7 +160,7 @@ void IntervalDrawer::DrawRobot(double x, double y, double theta)
     DrawPolygon(x,y,theta,X,Y, QPen(Qt::blue), QBrush(Qt::black));
 }
 
-void IntervalDrawer::DrawSailboat(double x, double y,
+void mSimpleDrawer::DrawSailboat(double x, double y,
                                   double theta, QColor colr,
                                   double deltag, QColor colg,
                                   double deltav, QColor colv)
@@ -187,7 +187,7 @@ void IntervalDrawer::DrawSailboat(double x, double y,
 
 }
 
-void IntervalDrawer::DrawText(double x, double y,
+void mSimpleDrawer::DrawText(double x, double y,
                               QString s, QColor col)
 {
     QPainter p(pixMap);
@@ -196,12 +196,12 @@ void IntervalDrawer::DrawText(double x, double y,
     p.drawText((int)xToPix(x),(int)yToPix(y),s);
 }
 
-void IntervalDrawer::Save(QString s)
+void mSimpleDrawer::Save(QString s)
 {
     pixMap->save(s+".png","PNG",100);
 }
 
-void IntervalDrawer::setDrawingBow(double xmin, double xmax,
+void mSimpleDrawer::setDrawingBow(double xmin, double xmax,
                                    double ymin, double ymax)
 {
     xMax=xmax;

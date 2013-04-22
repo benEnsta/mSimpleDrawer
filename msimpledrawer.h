@@ -1,5 +1,5 @@
-#ifndef INTERVALDRAWER_H
-#define INTERVALDRAWER_H
+#ifndef MSIMPLEDRAWER_H
+#define MSIMPLEDRAWER_H
 
 #include <QWidget>
 #include <QPainter>
@@ -11,16 +11,16 @@
 
 using namespace std;
 
-class IntervalDrawer : public QWidget
+class mSimpleDrawer : public QWidget
 {
     Q_OBJECT
     
 public:
-    explicit IntervalDrawer(double xmin, double xmax,
+    explicit mSimpleDrawer(double xmin, double xmax,
                             double ymin, double ymax,
                             QWidget *parent = 0);
-    explicit IntervalDrawer(QWidget *parent = 0);
-    ~IntervalDrawer();
+    explicit mSimpleDrawer(QWidget *parent = 0);
+    ~mSimpleDrawer();
 
     void Clean();
     void Center(double x,double y);
@@ -64,4 +64,4 @@ private:
     void resizeEvent(QResizeEvent *);
 };
 
-#endif // INTERVALDRAWER_H
+#endif // MSIMPLEDRAWER_H

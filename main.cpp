@@ -4,7 +4,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    IntervalDrawer w(-10,10,-10,10);
+    mSimpleDrawer w(-10,10,-10,10);
     w.show();
 
     w.DrawBox(0,5,0,10,QPen(Qt::darkRed),QBrush(Qt::red));
