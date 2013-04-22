@@ -15,3 +15,6 @@ SOURCES += main.cpp \
 
 HEADERS  += \
     msimpledrawer.h
+
+OTHER_FILES += LICENSE.md \
+    README.md
