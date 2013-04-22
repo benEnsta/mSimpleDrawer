@@ -1,5 +1,5 @@
 #include <QtGui/QApplication>
-#include "intervaldrawer.h"
+#include "msimpledrawer.h"
 
 int main(int argc, char *argv[])
 {

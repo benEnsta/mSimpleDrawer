@@ -1,4 +1,4 @@
-#include "intervaldrawer.h"
+#include "msimpledrawer.h"
 
 #include <QDebug>
 

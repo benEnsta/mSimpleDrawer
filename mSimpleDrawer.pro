@@ -10,7 +10,8 @@ TARGET = intervalDrawer
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-        intervaldrawer.cpp
+SOURCES += main.cpp \
+    msimpledrawer.cpp
 
-HEADERS  += intervaldrawer.h
+HEADERS  += \
+    msimpledrawer.h
