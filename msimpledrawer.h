@@ -50,7 +50,7 @@ public:
     void DrawText(double x, double y,
                   QString s, QColor col);
     void Save(QString s);
-    void setDrawingBow(double xmin, double xmax,
+    void setDrawingArea(double xmin, double xmax,
                        double ymin, double ymax);
     
 private:

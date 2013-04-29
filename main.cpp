@@ -5,6 +5,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     mSimpleDrawer w(-10,10,-10,10);
+    w.resize(1000,1000);
     w.show();
 
     w.DrawBox(0,5,0,10,QPen(Qt::darkRed),QBrush(Qt::red));

@@ -45,8 +45,8 @@ void mSimpleDrawer::resizeEvent(QResizeEvent *)
 {
     label->resize(size());
     QSize s = label->size();
-    pixMap = new QPixmap(s);
-    Clean();
+    QPixmap tmp((pixMap->scaled(s,Qt::IgnoreAspectRatio,Qt::SmoothTransformation)));
+    pixMap->swap(tmp);
 }
 
 double mSimpleDrawer::xToPix(double x)
@@ -201,7 +201,7 @@ void mSimpleDrawer::Save(QString s)
     pixMap->save(s+".png","PNG",100);
 }
 
-void mSimpleDrawer::setDrawingBow(double xmin, double xmax,
+void mSimpleDrawer::setDrawingArea(double xmin, double xmax,
                                    double ymin, double ymax)
 {
     xMax=xmax;
